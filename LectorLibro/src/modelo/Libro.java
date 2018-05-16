@@ -22,7 +22,8 @@ public class Libro implements Legible {
 	private FileOutputStream flujoW = null;
 	private DataOutputStream conversorW = null;
 	private int tamaño = 0;
-	public String temporal;
+	private int temporal;
+	private int paginaTemporal;
 
 	public Libro() {
 		super();
@@ -89,14 +90,30 @@ public class Libro implements Legible {
 
 	@Override
 	public void marcarPagina() {
-		//this.temporal = getCadena();
+		temporal=getTamaño();
+		paginaTemporal=getActual();
 	}
 
 	@Override
 	public void irAMarca() {
+		try {
+			actual=getPaginaTemporal();
+			tamaño=getTemporal();
+			flujoR = new FileReader(getRuta());
+			flujoR.skip(tamaño);
+			flujoR.read(letras);
+			cadena = new String(letras);
+			flujoR.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("no existe el archivo");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("error de acceso de lectura");
+		}
 	}
 
-	public String getTemporal() {
+	public int getTemporal() {
 		return this.temporal;
 	}
 
@@ -150,5 +167,9 @@ public class Libro implements Legible {
 
 	public int getTamaño() {
 		return this.tamaño;
+	}
+	
+	public int getPaginaTemporal() {
+		return paginaTemporal;
 	}
 }

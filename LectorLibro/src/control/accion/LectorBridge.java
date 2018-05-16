@@ -31,7 +31,7 @@ public class LectorBridge extends LectorUI {
 		this.btnAtras.addActionListener(listenerRetroceder);
 		this.listenerMarcar= new ListenerMarca(this, this.textArea);
 		this.btnMarcar.addActionListener(listenerMarcar);
-		this.listenerIrAMarca= new ListenerIrAMarca(this, this.textArea);
+		this.listenerIrAMarca= new ListenerIrAMarca(this, this.textArea,this.lblNumeroPagina);
 		this.btnIrAMarca.addActionListener(listenerIrAMarca);
 	}
 
